@@ -1,0 +1,830 @@
+  [1m[35m (19.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTasks (20220123015819)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220123015819"]]
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20220123015900)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "task_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6bd05453df"
+FOREIGN KEY ("task_id")
+  REFERENCES "tasks" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_comments_on_task_id" ON "comments" ("task_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220123015900"]]
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-01-23 02:00:37.247130"], ["updated_at", "2022-01-23 02:00:37.247130"]]
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (2.8ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish Math homework"], ["created_at", "2022-01-23 02:01:13.500696"], ["updated_at", "2022-01-23 02:01:13.500696"]]
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish Chemistry homework"], ["created_at", "2022-01-23 02:01:13.517216"], ["updated_at", "2022-01-23 02:01:13.517216"]]
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish Physics homework"], ["created_at", "2022-01-23 02:01:13.530762"], ["updated_at", "2022-01-23 02:01:13.530762"]]
+  [1m[36mTRANSACTION (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish Biology homework"], ["created_at", "2022-01-23 02:01:13.544389"], ["updated_at", "2022-01-23 02:01:13.544389"]]
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish CVWO code"], ["created_at", "2022-01-23 02:01:13.557943"], ["updated_at", "2022-01-23 02:01:13.557943"]]
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Finish English homework"], ["created_at", "2022-01-23 02:01:13.570943"], ["updated_at", "2022-01-23 02:01:13.570943"]]
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (1.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Buy food"], ["created_at", "2022-01-23 02:01:13.584507"], ["updated_at", "2022-01-23 02:01:13.584507"]]
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Create (1.7ms)[0m  [1m[32mINSERT INTO "comments" ("description", "task_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", "Finish math homework with the workings clearly displayed"], ["task_id", 1], ["created_at", "2022-01-23 02:01:13.713859"], ["updated_at", "2022-01-23 02:01:13.713859"]]
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Create (1.6ms)[0m  [1m[32mINSERT INTO "comments" ("description", "task_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", "Finish math homework without using caculator"], ["task_id", 1], ["created_at", "2022-01-23 02:01:13.728533"], ["updated_at", "2022-01-23 02:01:13.728533"]]
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2022-01-23 10:11:37 +0800
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant PagesController):
+  
+Started GET "/" for ::1 at 2022-01-23 10:14:20 +0800
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 135)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /mnt/c/apps/temp/task-manager/public/packs
+[Webpacker] Hash: b4d794d5c6a6e0fd1862
+Version: webpack 4.46.0
+Time: 7153ms
+Built at: 01/23/2022 10:14:31 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-3dd0dc24d9c39bc09227.js    125 KiB  application  [emitted] [immutable]  application
+js/application-3dd0dc24d9c39bc09227.js.map    139 KiB  application  [emitted] [dev]        application
+          js/index-170c720340907516e499.js   1.09 MiB        index  [emitted] [immutable]  index
+      js/index-170c720340907516e499.js.map   1.26 MiB        index  [emitted] [dev]        index
+                             manifest.json  661 bytes               [emitted]              
+Entrypoint application = js/application-3dd0dc24d9c39bc09227.js js/application-3dd0dc24d9c39bc09227.js.map
+Entrypoint index = js/index-170c720340907516e499.js js/index-170c720340907516e499.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 492 bytes {application} [built]
+[./app/javascript/packs/index.jsx] 1.05 KiB {index} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 19 hidden modules
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10605.6ms | Allocations: 12914)
+Completed 200 OK in 10708ms (Views: 10611.1ms | Allocations: 15853)
+
+
+Started GET "/" for ::1 at 2022-01-23 10:21:52 +0800
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 341)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /mnt/c/apps/temp/task-manager/public/packs
+[Webpacker] Hash: facfc7fc3d49687e63b8
+Version: webpack 4.46.0
+Time: 4663ms
+Built at: 01/23/2022 10:22:00 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-3dd0dc24d9c39bc09227.js    125 KiB  application  [emitted] [immutable]  application
+js/application-3dd0dc24d9c39bc09227.js.map    139 KiB  application  [emitted] [dev]        application
+          js/index-d901344a98e4e78f571f.js   1.34 MiB        index  [emitted] [immutable]  index
+      js/index-d901344a98e4e78f571f.js.map   1.49 MiB        index  [emitted] [dev]        index
+                             manifest.json  661 bytes               [emitted]              
+Entrypoint application = js/application-3dd0dc24d9c39bc09227.js js/application-3dd0dc24d9c39bc09227.js.map
+Entrypoint index = js/index-d901344a98e4e78f571f.js js/index-d901344a98e4e78f571f.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 492 bytes {application} [built]
+[./app/javascript/packs/index.jsx] 759 bytes {index} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 67 hidden modules
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7800.1ms | Allocations: 9620)
+Completed 200 OK in 7817ms (Views: 7805.9ms | ActiveRecord: 0.0ms | Allocations: 13239)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:22:00 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 483ms (Views: 0.4ms | ActiveRecord: 13.2ms | Allocations: 30166)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:22:01 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 36ms (Views: 0.1ms | ActiveRecord: 2.8ms | Allocations: 11920)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:22:02 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 2839)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:22:02 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 2602)
+
+
+Started GET "/" for ::1 at 2022-01-23 10:23:25 +0800
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 41)
+[Webpacker] Compiling...
+Started GET "/" for ::1 at 2022-01-23 10:23:29 +0800
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 38)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /mnt/c/apps/temp/task-manager/public/packs
+[Webpacker] Hash: c23d769727cf7efee395
+Version: webpack 4.46.0
+Time: 3048ms
+Built at: 01/23/2022 10:23:31 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-3dd0dc24d9c39bc09227.js    125 KiB  application  [emitted] [immutable]  application
+js/application-3dd0dc24d9c39bc09227.js.map    139 KiB  application  [emitted] [dev]        application
+          js/index-0f84ace64e986cc29c60.js   1.34 MiB        index  [emitted] [immutable]  index
+      js/index-0f84ace64e986cc29c60.js.map   1.49 MiB        index  [emitted] [dev]        index
+                             manifest.json  661 bytes               [emitted]              
+Entrypoint application = js/application-3dd0dc24d9c39bc09227.js js/application-3dd0dc24d9c39bc09227.js.map
+Entrypoint index = js/index-0f84ace64e986cc29c60.js js/index-0f84ace64e986cc29c60.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 492 bytes {application} [built]
+[./app/javascript/packs/index.jsx] 759 bytes {index} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 67 hidden modules
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6025.5ms | Allocations: 10704)
+Completed 200 OK in 6029ms (Views: 6027.6ms | ActiveRecord: 0.0ms | Allocations: 11174)
+
+
+[Webpacker] Compiled all packs in /mnt/c/apps/temp/task-manager/public/packs
+[Webpacker] Hash: c23d769727cf7efee395
+Version: webpack 4.46.0
+Time: 2804ms
+Built at: 01/23/2022 10:23:35 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-3dd0dc24d9c39bc09227.js    125 KiB  application  [emitted] [immutable]  application
+js/application-3dd0dc24d9c39bc09227.js.map    139 KiB  application  [emitted] [dev]        application
+          js/index-0f84ace64e986cc29c60.js   1.34 MiB        index  [emitted] [immutable]  index
+      js/index-0f84ace64e986cc29c60.js.map   1.49 MiB        index  [emitted] [dev]        index
+                             manifest.json  661 bytes               [emitted]              
+Entrypoint application = js/application-3dd0dc24d9c39bc09227.js js/application-3dd0dc24d9c39bc09227.js.map
+Entrypoint index = js/index-0f84ace64e986cc29c60.js js/index-0f84ace64e986cc29c60.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 492 bytes {application} [built]
+[./app/javascript/packs/index.jsx] 759 bytes {index} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 67 hidden modules
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5801.3ms | Allocations: 9880)
+Completed 200 OK in 5803ms (Views: 5802.1ms | ActiveRecord: 0.0ms | Allocations: 10328)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:23:35 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 51ms (Views: 0.2ms | ActiveRecord: 2.8ms | Allocations: 11963)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:23:35 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 54ms (Views: 0.2ms | ActiveRecord: 4.7ms | Allocations: 11855)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:23:37 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2560)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:23:37 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2610)
+
+
+Started GET "/" for ::1 at 2022-01-23 10:23:46 +0800
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 38)
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:23:46 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+[Webpacker] Everything's up-to-date. Nothing to do
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 49ms (Views: 0.2ms | ActiveRecord: 3.5ms | Allocations: 14084)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:23:46 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+[Webpacker] Everything's up-to-date. Nothing to do
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  Rendered layout layouts/application.html.erb (Duration: 119.4ms | Allocations: 24355)
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+Completed 200 OK in 124ms (Views: 122.7ms | ActiveRecord: 0.0ms | Allocations: 25109)
+
+
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 73ms (Views: 0.2ms | ActiveRecord: 4.1ms | Allocations: 15564)
+
+
+Started GET "/" for ::1 at 2022-01-23 10:25:54 +0800
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 341)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /mnt/c/apps/temp/task-manager/public/packs
+[Webpacker] Hash: 69a6a3aff37406a7f8fe
+Version: webpack 4.46.0
+Time: 2715ms
+Built at: 01/23/2022 10:26:00 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-b52b4ebc1a48ba2de634.js   71.5 KiB  application  [emitted] [immutable]  application
+js/application-b52b4ebc1a48ba2de634.js.map   80.1 KiB  application  [emitted] [dev]        application
+          js/index-0f84ace64e986cc29c60.js   1.34 MiB        index  [emitted] [immutable]  index
+      js/index-0f84ace64e986cc29c60.js.map   1.49 MiB        index  [emitted] [dev]        index
+                             manifest.json  661 bytes               [emitted]              
+Entrypoint application = js/application-b52b4ebc1a48ba2de634.js js/application-b52b4ebc1a48ba2de634.js.map
+Entrypoint index = js/index-0f84ace64e986cc29c60.js js/index-0f84ace64e986cc29c60.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 495 bytes {application} [built]
+[./app/javascript/packs/index.jsx] 759 bytes {index} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 66 hidden modules
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5849.6ms | Allocations: 16043)
+Completed 200 OK in 5860ms (Views: 5854.0ms | ActiveRecord: 0.0ms | Allocations: 19333)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:00 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 111ms (Views: 0.1ms | ActiveRecord: 5.9ms | Allocations: 27952)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:00 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 40ms (Views: 0.1ms | ActiveRecord: 3.4ms | Allocations: 11749)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:26:01 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2808)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:26:01 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 23ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 2424)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:02 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 57ms (Views: 0.1ms | ActiveRecord: 3.6ms | Allocations: 11862)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:02 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 43ms (Views: 0.1ms | ActiveRecord: 3.4ms | Allocations: 11732)
+
+
+Started GET "/api/v1/tasks/2" for ::1 at 2022-01-23 10:26:05 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 2236)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:06 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 41ms (Views: 0.2ms | ActiveRecord: 2.7ms | Allocations: 11830)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:06 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 42ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 11731)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:26:07 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2514)
+
+
+Started GET "/api/v1/tasks/1" for ::1 at 2022-01-23 10:26:07 +0800
+Processing by Api::V1::TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:13:in `show'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:15:in `show'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2488)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:08 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 39ms (Views: 0.1ms | ActiveRecord: 3.2ms | Allocations: 11810)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2022-01-23 10:26:08 +0800
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 2]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 3]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 5]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 6]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."task_id" = ?[0m  [["task_id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:9:in `index'
+Completed 200 OK in 48ms (Views: 0.1ms | ActiveRecord: 3.4ms | Allocations: 11735)
+
+
