@@ -1,5 +1,4 @@
-//create the individual view of task, then create the update task form here, take reference from airlines
-// add home here also
+//this is displayed when view more is pressed
 import React, { useState, useEffect, Fragment } from "react"
 import { useLocation, Link } from "react-router-dom"
 import axios from "axios"
