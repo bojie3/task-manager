@@ -3,6 +3,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+//commented out turbolink as some guide said it was a quick fix for back button not working
+
 import Rails from "@rails/ujs"
 // import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
